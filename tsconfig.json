@@ -1,5 +1,21 @@
 {
-  "extends": "@react-native/typescript-config",
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["**/node_modules", "**/Pods"]
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["esnext", "DOM"],
+    "jsx": "react-jsx",
+    "types": ["react", "react-native"],
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@screens/*": ["src/screens/*"],
+      "@entities/*": ["src/entities/*"],
+      "@shared/*": ["src/shared/*"],
+    }
+  },
+  "exclude": ["node_modules", "android", "ios", "web/dist"]
 }
