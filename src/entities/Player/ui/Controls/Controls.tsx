@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import TrackPlayer, { State, usePlaybackState, useProgress } from 'react-native-track-player';
 
@@ -84,7 +84,10 @@ export const Controls = memo(({ messages, messageMap, activeIndex, setActiveInde
     if (!nextIndex) setActiveIndex(-2);
   }, [activeIndex, messages, setActiveIndex]);
 
-  const onRepeat = async () => {
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const onRepeat = useCallback(async () => {
+    setIsDisabled(true);
     await TrackPlayer.pause();
 
     const msgToRepeat = messages[activeIndex - (activeIndex % 2)];
@@ -92,27 +95,30 @@ export const Controls = memo(({ messages, messageMap, activeIndex, setActiveInde
     await TrackPlayer.seekTo(msgToRepeat.startTime / 1000);
     await TrackPlayer.setRate(0.75);
     await TrackPlayer.play();
-    setTimeout(
-      async () => {
+
+    const intervalId = setInterval(async () => {
+      const { position: pos } = await TrackPlayer.getProgress();
+      if (pos * 1000 > msgToRepeat.endTime) {
         await TrackPlayer.pause();
         await TrackPlayer.setRate(1);
-      },
-      (msgToRepeat.endTime - msgToRepeat.startTime) / 0.75,
-    );
-  };
+        setIsDisabled(false);
+        clearInterval(intervalId);
+      }
+    }, 100);
+  }, [activeIndex, messages]);
 
   return (
     <View style={styles.wrap}>
       <View style={styles.row}>
-        <Button Icon={RewindIcon} onPress={onRewind} />
+        <Button disabled={isDisabled} Icon={RewindIcon} onPress={onRewind} />
         {state === State.Playing ? (
-          <Button Icon={PauseIcon} onPress={onPause} />
+          <Button disabled={isDisabled} Icon={PauseIcon} onPress={onPause} />
         ) : (
-          <Button Icon={PlayIcon} onPress={onPlay} />
+          <Button disabled={isDisabled} Icon={PlayIcon} onPress={onPlay} />
         )}
-        <Button Icon={ForwardIcon} onPress={onForward} />
+        <Button disabled={isDisabled} Icon={ForwardIcon} onPress={onForward} />
       </View>
-      <Button Icon={RepeatIcon} onPress={onRepeat} />
+      <Button disabled={isDisabled} Icon={RepeatIcon} onPress={onRepeat} />
     </View>
   );
 });
