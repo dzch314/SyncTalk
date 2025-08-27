@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: '50%',
   },
+  disabled: {
+    backgroundColor: theme.inverterPrimaryBgColor,
+  },
   buttonContent: {
     color: theme.secondaryTextColor,
   },
