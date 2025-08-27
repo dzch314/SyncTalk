@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "clean": "rimraf node_modules && rimraf yarn.lock package-lock.json && rimraf ios/Pods",
-    "pods": "cd ios && pod install",
+    "pods": "cd ios && pod install"
   },
   "dependencies": {
     "react": "19.1.0",
