@@ -14,7 +14,7 @@
       "@app/*": ["src/app/*"],
       "@screens/*": ["src/screens/*"],
       "@entities/*": ["src/entities/*"],
-      "@shared/*": ["src/shared/*"],
+      "@shared/*": ["src/shared/*"]
     }
   },
   "exclude": ["node_modules", "android", "ios", "web/dist"]

@@ -2,22 +2,21 @@
   "name": "synctalk",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "clean": "rimraf node_modules && rimraf yarn.lock package-lock.json && rimraf ios/Pods",
-    "pods": "cd ios && pod install"
+  "description": "Audio and text interleave app",
+  "author": "Dmitry Chernyavsky <dzch314@gmail.com> (https://github.com/dzch314)",
+  "license": "ISC",
+  "engines": {
+    "node": ">=22.x.x",
+    "npm": ">=10.x.x"
   },
-  "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-native": "0.80.2",
-    "react-native-safe-area-context": "^5.5.2",
-    "react-native-svg": "^15.12.1",
-    "react-native-track-player": "5.0.0-alpha0",
-    "react-native-web": "^0.21.1",
-    "shaka-player": "^4.16.0"
+  "main": "index.ts",
+  "scripts": {
+    "start": "react-native start",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android",
+    "pods": "cd ios && pod install",
+    "clean": "rimraf node_modules && rimraf package-lock.json && rimraf ios/Pods && cd android && ./gradlew clean",
+    "prettier": "npx prettier --write **/*.{js,ts,tsx,json} *.{js,ts}"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -26,19 +25,24 @@
     "@react-native-community/cli": "^20.0.1",
     "@react-native-community/cli-platform-android": "^20.0.1",
     "@react-native-community/cli-platform-ios": "^20.0.1",
-    "@react-native/babel-preset": "^0.81.0",
-    "@react-native/eslint-config": "^0.81.0",
-    "@react-native/metro-config": "^0.81.0",
-    "@react-native/typescript-config": "^0.81.0",
+    "@react-native/babel-preset": "0.80.2",
+    "@react-native/eslint-config": "0.80.2",
+    "@react-native/metro-config": "0.80.2",
+    "@react-native/typescript-config": "0.80.2",
     "@types/react": "^19.1.11",
-    "@types/react-test-renderer": "^19.1.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "eslint": "^8.19.0",
     "prettier": "^3.6.2",
     "react-native-svg-transformer": "^1.5.1",
     "typescript": "^5.9.2"
   },
-  "engines": {
-    "node": ">=18"
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.80.2",
+    "react-native-safe-area-context": "^5.5.2",
+    "react-native-svg": "^15.12.1",
+    "react-native-track-player": "5.0.0-alpha0",
+    "shaka-player": "^4.16.0"
   }
 }
