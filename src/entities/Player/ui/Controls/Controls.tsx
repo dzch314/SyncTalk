@@ -110,13 +110,13 @@ export const Controls = memo(({ messages, messageMap, activeIndex, setActiveInde
   return (
     <View style={styles.wrap}>
       <View style={styles.row}>
-        <Button disabled={isDisabled} Icon={RewindIcon} onPress={onRewind} />
+        <Button disabled={isDisabled || activeIndex === -2} Icon={RewindIcon} onPress={onRewind} />
         {state === State.Playing ? (
           <Button disabled={isDisabled} Icon={PauseIcon} onPress={onPause} />
         ) : (
           <Button disabled={isDisabled} Icon={PlayIcon} onPress={onPlay} />
         )}
-        <Button disabled={isDisabled} Icon={ForwardIcon} onPress={onForward} />
+        <Button disabled={isDisabled || activeIndex === -2} Icon={ForwardIcon} onPress={onForward} />
       </View>
       <Button disabled={isDisabled} Icon={RepeatIcon} onPress={onRepeat} />
     </View>
