@@ -1,9 +1,10 @@
 import { memo } from 'react';
 import { Text, View } from 'react-native';
+import { useProgress } from 'react-native-track-player';
+
+import { formatTime } from '@shared/lib/formatTime';
 
 import { styles } from './styles';
-import { useProgress } from 'react-native-track-player';
-import { formatTime } from '@shared/lib/formatTime';
 
 export const Progress = memo(() => {
   const { position, duration } = useProgress(100);

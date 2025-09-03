@@ -2,12 +2,11 @@ import { memo, useEffect } from 'react';
 import { View } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 
+import type { TimelinedMessage, MessageMap } from '@shared/lib/generateMessageTimeline';
+
 import { Controls } from '../Controls/Controls';
 import { Progress } from '../Progress/Progress';
-
 import { styles } from './styles';
-
-import type { TimelinedMessage, MessageMap } from '@shared/lib/generateMessageTimeline';
 
 interface PlayerProps {
   messages: TimelinedMessage[];
